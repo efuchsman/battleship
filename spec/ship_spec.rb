@@ -24,7 +24,34 @@ RSpec.describe Ship do
     it 'can be sunk' do
         cruiser = Ship.new("Cruiser", 3)
 
-        expect(cruiser.sunk?).to eq(false)
+        expect(cruiser.sunk?).to be false
     end
+
+    it "can be atttacked" do
+        cruiser = Ship.new('Cruiser', 3)
+
+        expect(cruiser.ship_length).to eq(3)
+        expect(cruiser.health).to eq(3)
+        expect(cruiser.sunk?).to be false
+
+        cruiser.hit
+
+        expect(cruiser.health).to eq(2)
+        expect(cruiser.sunk?).to be false
+
+        cruiser.hit
+
+        expect(cruiser.health).to eq(1)
+        expect(cruiser.sunk?).to be false
+
+        cruiser.hit
+
+        expect(cruiser.health).to eq(0)
+        expect(cruiser.sunk?).to be true
+    end
+
+
+
+
 
 end
