@@ -6,10 +6,16 @@ require 'pry'
 RSpec.describe Cell do
     it 'exists' do
         cell = Cell.new('B4')
-        
+
         expect(cell).to be_an_instance_of(Cell)
     end
 
+    it 'checks for ships' do
+        cell = Cell.new('B4')
 
+        cell.ship
+
+        expect(cell.ship).to eq(nil)
+    end
 
 end

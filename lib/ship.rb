@@ -21,11 +21,4 @@ attr_reader :name, :ship_length
         @ship_length -= 1
     end
 
-
-
-
-
-
-
-
 end
