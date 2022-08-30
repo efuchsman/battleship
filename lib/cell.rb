@@ -1,9 +1,11 @@
 class Cell
+    attr_reader :coordinate, :ship, :fire, :render
 
     def initialize(coordinate)
         @coordinate = coordinate
         @ship = nil
         @fire = false
+        @render = "•"
     end
 
     def ship
@@ -26,12 +28,25 @@ class Cell
         @fire
     end
 
+    def render(visible = false)
+
+        if visible == true && @ship != nil
+            @render = "S"
+        elsif @ship == nil && @fire == true
+            @render = "M"
+        elsif @ship != nil && @fire == true && @ship.sunk? == false
+            @render = "H"
+        elsif @ship!= nil && @ship.sunk? == true
+            @render = "X"
+        else
+            @render
+        end
+    end
+
     def fire_upon
-        if @ship == nil 
             @fire = true
-        elsif @ship != nil
-            @ship.hit 
-            @fire = true 
+        if @ship != nil
+            @ship.hit
         end
     end
 
