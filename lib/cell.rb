@@ -50,19 +50,4 @@ class Cell
             @ship.hit
         end
     end
-
-    def render(visible = false)
-        if visible == true && @ship != nil
-            @render = "S"
-        elsif @ship != nil && @fire == true && @ship.sunk? == false
-            @render = "H"
-        elsif @ship != nil && @ship.sunk? == true
-            @render = "X"
-        elsif @ship == nil && @fire == true
-            @render = "M"
-        else 
-            @render
-        end
-    end
-
 end
