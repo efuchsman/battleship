@@ -10,6 +10,7 @@ RSpec.describe Cell do
         expect(cell).to be_an_instance_of(Cell)
     end
 
+
     it 'checks for ships' do
         cell = Cell.new('B4')
 
@@ -50,6 +51,7 @@ RSpec.describe Cell do
 
         expect(cell.ship.health).to eq(2)
     end
+
 
     it 'renders the coordinate' do
         cell_1 = Cell.new("B4")
