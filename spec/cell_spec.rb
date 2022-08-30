@@ -10,6 +10,7 @@ RSpec.describe Cell do
         expect(cell).to be_an_instance_of(Cell)
     end
 
+
     it 'checks for ships' do
         cell = Cell.new('B4')
 
@@ -50,6 +51,40 @@ RSpec.describe Cell do
 
         expect(cell.ship.health).to eq(2)
     end
+
+    it 'render, returns string representation
+        of a particular cell on the board depending
+        on cell status' do
+        cell_1 = Cell.new('B4')
+
+        expect(cell_1.render).to eq('·')
+
+        cell_1.fire_upon
+        expect(cell_1.render).to eq('M')
+
+        cell_2 = Cell.new('C3')
+        cruiser = Ship.new('Cruiser', 3)
+
+        cell_2.place_ship(cruiser)
+        cell_2.render
+        expect(cell_2.render).to eq('·')
+
+        cell_2.render(true)
+        expect(cell_2.render(true)).to eq('S')
+
+        cell_2.fire_upon
+        expect(cell_2.render).to eq('H')
+
+        expect(cruiser.sunk?).to be false
+
+        cruiser.hit
+        cruiser.hit
+        expect(cruiser.sunk?).to be true
+
+        cell_2.render
+        expect(cell_2.render).to eq('X')
+        end
+
 
 
 
