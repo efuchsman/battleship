@@ -9,6 +9,14 @@ attr_reader :name, :ship_length
         @ship_length
     end
 
+    def sunk?
+        if @ship_length == 0
+            true
+        else
+            false
+        end
+    end
+
 
 
 
