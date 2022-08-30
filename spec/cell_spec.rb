@@ -18,4 +18,12 @@ RSpec.describe Cell do
         expect(cell.ship).to eq(nil)
     end
 
+    it 'check for empty cells' do
+        cell = Cell.new('B4')
+
+        cell.ship
+
+        expect(cell.empty?).to be true
+    end
+
 end
