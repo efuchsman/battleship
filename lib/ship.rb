@@ -17,6 +17,12 @@ attr_reader :name, :ship_length
         end
     end
 
+    def hit
+        @ship_length -= 1
+    end
+
+
+
 
 
 
