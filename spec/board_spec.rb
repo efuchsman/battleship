@@ -89,28 +89,6 @@ describe 'cells' do
     end
   end
 
-  describe 'valid_placement?' do
-  it 'validates the coordinates are the same length as the ship and returns true' do 
-    board = Board.new 
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-
-    board.valid_length?(cruiser, ["A1", "A2", "A3"])
-
-    expect(board.valid_length?(cruiser, ["A1", "A2", "A3"])).to be true
-  end 
-
-  it 'returns false if the coordinates are != to ship length' do
-    board = Board.new 
-    cruiser = Ship.new("Cruiser", 3)
-    submarine = Ship.new("Submarine", 2)
-
-    board.valid_length?(submarine, ["A2", "A3", "A4"])
-
-    expect(board.valid_length?(submarine, ["A2", "A3", "A4"])).to be false
-  end
-  end
-
 
 
 end
