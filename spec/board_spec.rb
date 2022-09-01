@@ -49,6 +49,7 @@ RSpec.describe Board do
 
     expect(board.valid_coordinate?("A5")).to be false
   end
+
   end
 
 
