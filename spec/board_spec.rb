@@ -52,6 +52,21 @@ RSpec.describe Board do
 
   end
 
+  it "checks that coordinates are consecutive horizontally" do
+    board = Board.new
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    board.valid_horizontal?(["A1", "A2", "A4"])
+    board.valid_horizontal?(["A3", "A2", "A1"])
+    board.valid_horizontal?(["B1", "B2"])
+
+    expect(board.valid_horizontal?(["B1", "B2"])).to be true
+    expect(board.valid_horizontal?(["A3", "A2", "A1"])).to be false
+    expect(board.valid_horizontal?(["A3", "A2", "A1"])).to be false
+
+  end
+
 
 
 end
