@@ -15,6 +15,10 @@ class Board
 
     def valid_coordinate?(coordinate)
         @coordinate_keys.include?(coordinate)
-      end
+    end
 
+    def valid_length?(ship, coordinates)
+        @ship = ship 
+        ship.ship_length == coordinates.count
+    end
 end
