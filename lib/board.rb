@@ -44,6 +44,8 @@ class Board
       true
     end
 
-
-
+    def valid_length?(ship, coordinates)
+        @ship = ship 
+        ship.ship_length == coordinates.count
+    end
 end
