@@ -105,8 +105,8 @@ describe 'cells' do
       board.valid_vertical?(["A1", "B1"])
       expect(board.valid_vertical?(["A1", "B1"])).to be true
     end
-    
-    it 'checks if placement is valid and will return true if valid' do 
+
+    it 'checks if placement is valid and will return true if valid' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -118,7 +118,7 @@ describe 'cells' do
       expect(board.valid_placement?(submarine, ["A1", "A2"])).to be true
     end
 
-    it 'checks for diagonals or invalid coordinates using valid placement' do 
+    it 'checks for diagonals or invalid coordinates using valid placement' do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
       submarine = Ship.new("Submarine", 2)
@@ -130,6 +130,35 @@ describe 'cells' do
       expect(board.valid_placement?(submarine, ["C22", "D23"])).to be false
     end
   end
+
+  describe 'place ship' do
+    it 'places a ship at the given coordinates' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+
+      board.place(cruiser, ["A1", "A2", "A3"])
+
+      expect(board.cell_hash["A1"].ship).to be cruiser
+      expect(board.cell_hash["A2"].ship).to be cruiser
+      expect(board.cell_hash["A3"].ship).to be cruiser
+      expect(board.cell_hash["A2"].ship).to eq(board.cell_hash["A3"].ship)
+    end
+
+    it 'tests for overlapping ships' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+
+      board.place(cruiser, ["A1", "A2", "A3"])
+
+      submarine = Ship.new("Submarine", 2)
+      board.valid_placement?(submarine, ["A1", "B1"])
+      board.valid_placement?(submarine, ["B2", "B3"])
+
+      expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
+      expect(board.valid_placement?(submarine, ["B2", "B3"])).to be true
+    end
+  end
+
 
 
 

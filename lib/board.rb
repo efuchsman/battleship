@@ -78,12 +78,30 @@ class Board
     end
 
     def valid_placement?(ship, coordinates)
-      if valid_length?(ship, coordinates) != true || (valid_horizontal?(coordinates) || valid_vertical?(coordinates)) != true
+      if valid_length?(ship, coordinates) != true || (valid_horizontal?(coordinates) || valid_vertical?(coordinates)) != true || overlapping_placement?(coordinates) == true
         return false
       end
       true
     end
 
+    def overlapping_placement?(coordinates)
+      coordinates.each do |coordinate|
+        cell = cell_hash[coordinate]
+        if cell.empty? != true
+          return true
+        end
+        false
+      end
+    end
 
-
+    def place(ship, coordinates)
+      if valid_placement?(ship, coordinates) != true
+        return "invalid placement"
+      else
+        coordinates.each do |coordinate|
+          cell = @cell_hash[coordinate]
+          cell.place_ship(ship)
+        end
+      end
+    end
 end
