@@ -105,7 +105,30 @@ describe 'cells' do
       board.valid_vertical?(["A1", "B1"])
       expect(board.valid_vertical?(["A1", "B1"])).to be true
     end
+    
+    it 'checks if placement is valid and will return true if valid' do 
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
 
+      board.valid_placement?(cruiser, ["B1", "C1", "D1"])
+      board.valid_placement?(submarine, ["A1", "A2"])
+
+      expect(board.valid_placement?(cruiser, ["B1", "C1", "D1"])).to be true
+      expect(board.valid_placement?(submarine, ["A1", "A2"])).to be true
+    end
+
+    it 'checks for diagonals or invalid coordinates using valid placement' do 
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      board.valid_placement?(cruiser, ["A1", "B2", "C3"])
+      board.valid_placement?(submarine, ["C22", "D23"])
+
+      expect(board.valid_placement?(cruiser, ["A1", "B2", "C3"])).to be false
+      expect(board.valid_placement?(submarine, ["C22", "D23"])).to be false
+    end
   end
 
 
