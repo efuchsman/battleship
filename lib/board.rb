@@ -117,8 +117,8 @@ class Board
         row.each do |key|
           num_col +=  cells[key].render + " "
         end
-        num_col += "\n"
       end
+      num_col += "\n"
     end
 
 end
