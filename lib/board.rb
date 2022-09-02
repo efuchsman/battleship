@@ -84,6 +84,15 @@ class Board
       true
     end
 
-
+    def place(ship, coordinates)
+      if valid_placement?(ship, coordinates) != true
+        return "invalid placement"
+      else
+        coordinates.each do |coordinate|
+          cell = @cell_hash[coordinate]
+          cell.place_ship(ship)
+        end
+      end
+    end
 
 end
