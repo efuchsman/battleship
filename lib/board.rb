@@ -84,6 +84,16 @@ class Board
       true
     end
 
+    def overlapping_placement?(coordinates)
+      coordinates.each do |coordinate|
+        cell = cell_hash[coordinate]
+        if cell.empty? != true
+          return true
+        end
+        false
+      end
+    end
+
     def place(ship, coordinates)
       if valid_placement?(ship, coordinates) != true
         return "invalid placement"
