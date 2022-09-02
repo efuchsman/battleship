@@ -104,5 +104,4 @@ class Board
         end
       end
     end
-
 end

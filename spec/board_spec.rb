@@ -144,6 +144,19 @@ describe 'cells' do
       expect(board.cell_hash["A2"].ship).to eq(board.cell_hash["A3"].ship)
     end
 
+    it 'tests for overlapping ships' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+
+      board.place(cruiser, ["A1", "A2", "A3"])
+
+      submarine = Ship.new("Submarine", 2)
+      board.valid_placement?(submarine, ["A1", "B1"])
+      board.valid_placement?(submarine, ["B2", "B3"])
+
+      expect(board.valid_placement?(submarine, ["A1", "B1"])).to be false
+      expect(board.valid_placement?(submarine, ["B2", "B3"])).to be true
+    end
   end
 
 
