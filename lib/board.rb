@@ -121,4 +121,22 @@ class Board
       num_col += "\n"
     end
 
+    def render(visible = true)
+      num_col_vis = "  1 2 3 4 \n"
+      rows = [
+        ["A1","A2", "A3", "A4"],
+        ["B1", "B2", "B3", "B4"],
+        ["C1", "C2", "C3", "C4"],
+        ["D1", "D2", "D3", "D4"]]
+       rows.each do |row|
+         num_col_vis += row.first.chars.first + " "
+         row.each do |key|
+           num_col_vis +=  cells[key].render(true) + " "
+         end
+       end
+       num_col_vis += "\n"
+    end
+
+
+
 end
