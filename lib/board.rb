@@ -28,6 +28,7 @@ class Board
       old_coord_val = nil
 
       coordinates.each do|coordinate|
+        valid_coordinate?(coordinate)
         c_ord = coordinate.ord
         coord_ord << c_ord
 
