@@ -78,7 +78,7 @@ class Board
     end
 
     def valid_placement?(ship, coordinates)
-      if valid_length?(ship, coordinates) != true || (valid_horizontal?(coordinates) || valid_vertical?(coordinates)) != true
+      if valid_length?(ship, coordinates) != true || (valid_horizontal?(coordinates) || valid_vertical?(coordinates)) != true || overlapping_placement?(coordinates) == true
         return false
       end
       true
