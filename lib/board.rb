@@ -50,8 +50,31 @@ class Board
       true
     end
 
-    def valid_length?(ship, coordinates)
-        @ship = ship
-        ship.ship_length == coordinates.count
+    def valid_vertical?(coordinates)
+      old_coord_ord = nil
+      integ_val_arr = []
+
+      coordinates.each do |coordinate|
+        valid_coordinate?(coordinate)
+        new_coord_ord = coordinate.ord
+        integ_value = coordinate.chars.last.to_i
+        integ_val_arr << integ_value
+
+        if valid_coordinate?(coordinate) != true
+          return false
+        end
+
+      if old_coord_ord == nil || new_coord_ord - old_coord_ord ==1
+        old_coord_ord = new_coord_ord
+      elsif new_coord_ord - old_coord_ord != 1
+        return false
+      end
     end
+
+      if integ_val_arr.max != integ_val_arr.min
+        return false
+      end
+      true
+    end
+
 end
