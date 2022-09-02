@@ -1,16 +1,17 @@
 class Board
-    attr_reader :coordinate_keys
+    attr_reader :coordinate_keys, :cell_hash
 
     def initialize
         @coordinate_keys = ["A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4", "D1", "D2", "D3", "D4"]
+        @cell_hash = cells
     end
 
     def cells
-        cells_hash = {}
+        hash = {}
         @coordinate_keys.each do |key|
-            cells_hash[key] = Cell.new(key)
+            hash[key] = Cell.new(key)
         end
-        cells_hash
+        hash
     end
 
     def valid_coordinate?(coordinate)
@@ -45,7 +46,7 @@ class Board
     end
 
     def valid_length?(ship, coordinates)
-        @ship = ship 
+        @ship = ship
         ship.ship_length == coordinates.count
     end
 end
