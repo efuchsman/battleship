@@ -31,8 +31,12 @@ class Board
         valid_coordinate?(coordinate)
         c_ord = coordinate.ord
         coord_ord << c_ord
-
         new_val = coordinate.chars.last.to_i
+
+        if valid_coordinate?(coordinate) != true
+          return false
+        end
+
         if old_coord_val == nil || new_val - old_coord_val == 1
           old_coord_val = new_val
         elsif new_val - old_coord_val != 1
