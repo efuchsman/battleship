@@ -72,7 +72,6 @@ describe 'cells' do
       expect(board.valid_length?(submarine, ["A2", "A3", "A4"])).to be false
     end
 
-
     it "checks that coordinates are consecutive horizontally" do
       board = Board.new
       cruiser = Ship.new("Cruiser", 3)
@@ -87,6 +86,26 @@ describe 'cells' do
       expect(board.valid_horizontal?(["A3", "A2", "A1"])).to be false
 
     end
+
+    it 'returns false if coordinates are not consecutive vertically' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      board.valid_vertical?(["A1", "C1"])
+
+      expect(board.valid_vertical?(["A1", "C1"])).to be false
+    end
+
+    it 'returns true if the coordinates are consecutive vertically' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      submarine = Ship.new("Submarine", 2)
+
+      board.valid_vertical?(["A1", "B1"])
+      expect(board.valid_vertical?(["A1", "B1"])).to be true
+    end
+
   end
 
 
