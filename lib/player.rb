@@ -20,6 +20,4 @@ attr_reader :fleet
     end
     true
   end
-
-
 end
