@@ -32,6 +32,10 @@ RSpec.describe Player do
       expect(player.health_of_ship_at(0)).to eq(3)
       expect(player.health_of_ship_at(1)).to eq(2)
 
+      cruiser.hit
+
+      expect(player.health_of_ship_at(0)).to eq(2)
+
 
     end
 
