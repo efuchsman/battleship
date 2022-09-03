@@ -15,17 +15,37 @@ class Game
     user = gets.chomp.downcase
 
     if user == 'q'
+      exit
     elsif user == 'p'
       computer_place_ships(@computer.fleet, @computer.board.coordinate_keys)
+
       p "Enter the squares for the Cruiser (3 spaces):"
       player_1_cruiser_coords = gets.chomp.upcase.split
 
+      until player_1.board.valid_placement?(@player_1.fleet[0], player_1_cruiser_coords) == true
+      p "Those are invalid coordinates. Please try again:"
+        player_1_cruiser_coords = gets.chomp.upcase.split
+      end
+
       @player_1.board.place(@player_1.fleet[0],player_1_cruiser_coords)
 
+      p "Enter the squares for the Submarine (2 spaces):"
+
+      player_1_submarine_coords = gets.chomp.upcase.split
+
+      until player_1.board.valid_placement?(@player_1.fleet[1], player_1_submarine_coords) == true
+        p "Those are invalid coordinates. Please try again:"
+        player_1_submarine_coords = gets.chomp.upcase.split
+      end
+
+      @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
+
+      p '============COMPUTER BOARD=============='
+      p @computer.board.render
+      p '=============PLAYER BOARD==============='
       p @player_1.board.render_player(true)
+
       # play
-    else
-      'Please read the directions!'
     end
   end
 
