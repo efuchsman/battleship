@@ -22,7 +22,7 @@ class Game
       p "Enter the squares for the Cruiser (3 spaces):"
       player_1_cruiser_coords = gets.chomp.upcase.split
 
-      until player_1.board.valid_placement?(@player_1.fleet[0], player_1_cruiser_coords) == true
+      until @player_1.board.valid_placement?(@player_1.fleet[0], player_1_cruiser_coords) == true
       p "Those are invalid coordinates. Please try again:"
         player_1_cruiser_coords = gets.chomp.upcase.split
       end
@@ -33,19 +33,20 @@ class Game
 
       player_1_submarine_coords = gets.chomp.upcase.split
 
-      until player_1.board.valid_placement?(@player_1.fleet[1], player_1_submarine_coords) == true
+      until @player_1.board.valid_placement?(@player_1.fleet[1], player_1_submarine_coords) == true
         p "Those are invalid coordinates. Please try again:"
-        player_1_submarine_coords = gets.chomp.upcase.split
+        @player_1_submarine_coords = gets.chomp.upcase.split
       end
 
       @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
 
-      p '============COMPUTER BOARD=============='
-      p @computer.board.render
-      p '=============PLAYER BOARD==============='
-      p @player_1.board.render_player(true)
+      print '============COMPUTER BOARD=============='
+      print @computer.board.render
+      print '=============PLAYER BOARD==============='
+      print @player_1.board.render_player(true)
 
-      # play
+      play
+
     end
   end
 
@@ -58,13 +59,34 @@ class Game
     p "I have laid out my ships on the grid."
     p "You now need to lay out your two ships."
     p "The Cruiser is three units long and the Submarine is two units long."
-    p @computer.board.render
+    print @computer.board.render
   end
 
-  # def play
-  #   until player_1.has_lost? || computer.has_lost?
+  def play
+    # until player_1.has_lost? || computer.has_lost?
+        p "Enter the coordinate for your shot"
+        player_shot = gets.chomp.upcase
+
+          until @computer.board.valid_coordinate?(player_shot) == true
+            p "Please entire a valid fire coordinate"
+            player_shot = gets.chomp.upcase.split
+          end
+          @computer.board.cell_hash[player_shot].fire_upon
+
+            if player_shot == @computer.fleet
+              p "your shot #{player_shot} was a hit"
+              print " "
+            else
+              p "your shot #{player_shot} was a miss"
+            end
+
+          p '============COMPUTER BOARD=============='
+          print @computer.board.render
+          p '=============PLAYER BOARD==============='
+          print @player_1.board.render_player(true)
+
 
   #   end
-  # end
+   end
 
 end
