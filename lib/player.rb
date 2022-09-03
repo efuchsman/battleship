@@ -1,7 +1,8 @@
 class Player
-attr_reader :fleet
-  def initialize(fleet)
+attr_reader :fleet, :board
+  def initialize(fleet, board)
     @fleet = fleet
+    @board = board
   end
 
   def health_of_ship_at(index)
