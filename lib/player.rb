@@ -12,6 +12,14 @@ attr_reader :fleet
     end
   end
 
+  def has_lost?
+    fleet.each do |ship|
+     if ship.sunk? != true
+      return false
+      end
+    end
+    true
+  end
 
 
 end
