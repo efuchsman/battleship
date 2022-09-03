@@ -104,4 +104,42 @@ class Board
         end
       end
     end
+
+    def render
+      num_col = "  1 2 3 4 \n"
+      rows = [
+        ["A1","A2", "A3", "A4"],
+        ["B1", "B2", "B3", "B4"],
+        ["C1", "C2", "C3", "C4"],
+        ["D1", "D2", "D3", "D4"]
+      ]
+      rows.each do |row|
+        num_col += row.first.chars.first + " "
+        row.each do |key|
+          num_col +=  @cell_hash[key].render + " "
+        end
+        num_col += "\n"
+      end
+      num_col
+    end
+
+    def render_player(visible = true)
+      num_col_vis = "  1 2 3 4 \n"
+      rows = [
+        ["A1","A2", "A3", "A4"],
+        ["B1", "B2", "B3", "B4"],
+        ["C1", "C2", "C3", "C4"],
+        ["D1", "D2", "D3", "D4"]]
+       rows.each do |row|
+         num_col_vis += row.first.chars.first + " "
+         row.each do |key|
+           num_col_vis +=  @cell_hash[key].render(true) + " "
+         end
+         num_col_vis += "\n"
+       end
+       num_col_vis
+    end
+
+
+
 end

@@ -3,6 +3,7 @@ require './lib/ship.rb'
 require './lib/cell.rb'
 require './lib/board.rb'
 require 'pry'
+require 'pry-nav'
 
 RSpec.describe Board do
   it 'exists' do
@@ -159,6 +160,22 @@ describe 'cells' do
     end
   end
 
+  describe 'render' do
+    it 'renders the board' do
+      board = Board.new
+      cruiser = Ship.new("Cruiser", 3)
+      board.place(cruiser, ["A1", "A2", "A3"])
+      expect(board.render).to eq("  1 2 3 4 \nA • • • • \nB • • • • \nC • • • • \nD • • • • \n")
+    end
+
+    it 'renders the board for the player' do
+        board = Board.new
+        cruiser = Ship.new("Cruiser", 3)
+        board.place(cruiser, ["A1", "A2", "A3"])
+        expect(board.render_player(true)).to eq("  1 2 3 4 \nA S S S • \nB • • • • \nC • • • • \nD • • • • \n")
+    end
+
+  end
 
 
 
