@@ -31,21 +31,21 @@ class Cell
 
     def render(visible = false)
 
-        if visible == true && @ship != nil
+        if @ship!= nil && @ship.sunk? == true
+            @render = "X"
+        elsif @ship != nil && @fire == true && @ship.sunk? == false
+            @render = "H"
+        elsif visible == true && @ship != nil
             @render = "S"
         elsif @ship == nil && @fire == true
             @render = "M"
-        elsif @ship != nil && @fire == true && @ship.sunk? == false
-            @render = "H"
-        elsif @ship!= nil && @ship.sunk? == true
-            @render = "X"
         else
             @render
         end
     end
 
     def fire_upon
-            @fire = true
+        @fire = true
         if @ship != nil
             @ship.hit
         end
