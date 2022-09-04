@@ -35,7 +35,7 @@ class Game
 
       until @player_1.board.valid_placement?(@player_1.fleet[1], player_1_submarine_coords) == true
         p "Those are invalid coordinates. Please try again:"
-        @player_1_submarine_coords = gets.chomp.upcase.split
+        player_1_submarine_coords = gets.chomp.upcase.split
       end
 
       @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
@@ -54,7 +54,11 @@ class Game
     board = @computer.board
     fleet.each do |ship|
       selected_coords = coordinates.each_cons(ship.ship_length).to_a.sample
+      until board.valid_placement?(ship, selected_coords) == true
+        selected_coords = coordinates.each_cons(ship.ship_length).to_a.sample
+      end
       board.place(ship, selected_coords)
+
     end
     p "I have laid out my ships on the grid."
     p "You now need to lay out your two ships."
@@ -63,30 +67,44 @@ class Game
   end
 
   def play
-    # until player_1.has_lost? || computer.has_lost?
-        p "Enter the coordinate for your shot"
+    until player_1.has_lost? || computer.has_lost?
+      p "Enter the coordinate for your shot"
+      player_shot = gets.chomp.upcase
+
+      until @computer.board.valid_coordinate?(player_shot) == true
+        p "Please entire a valid fire coordinate"
         player_shot = gets.chomp.upcase
+      end
 
-          until @computer.board.valid_coordinate?(player_shot) == true
-            p "Please entire a valid fire coordinate"
-            player_shot = gets.chomp.upcase.split
-          end
-          @computer.board.cell_hash[player_shot].fire_upon
+      computer_shot = @computer.board.coordinate_keys.sample
+      @computer.board.cell_hash[player_shot].fire_upon
+      @player_1.board.cell_hash[computer_shot].fire_upon
 
-            if player_shot == @computer.fleet
-              p "your shot #{player_shot} was a hit"
-              print " "
-            else
-              p "your shot #{player_shot} was a miss"
-            end
+      if !@computer.board.cell_hash[player_shot].empty?
+        p "your shot #{player_shot} was a hit"
+        print " "
+      else
+        p "your shot #{player_shot} was a miss"
+      end
 
-          p '============COMPUTER BOARD=============='
-          print @computer.board.render
-          p '=============PLAYER BOARD==============='
-          print @player_1.board.render_player(true)
+      if !@player_1.board.cell_hash[computer_shot].empty?
+        p "my shot #{computer_shot} was a hit"
+        print " "
+      else
+        p "my shot #{computer_shot} was a miss"
+      end
 
+      p '============COMPUTER BOARD=============='
+      print @computer.board.render
+      p '=============PLAYER BOARD==============='
+      print @player_1.board.render_player(true)
 
-  #   end
-   end
+    end
+    if player_1.has_lost?
+      p "I won!"
+    else
+      p "You won!"
+    end
+  end
 
 end
