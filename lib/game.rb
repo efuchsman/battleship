@@ -53,9 +53,9 @@ class Game
   def computer_place_ships(fleet, coordinates)
     board = @computer.board
     fleet.each do |ship|
-      selected_coords = coordinates.each_cons(ship.ship_length).to_a.sample
+      selected_coords = coordinates.sample(ship.ship_length)
       until board.valid_placement?(ship, selected_coords) == true
-        selected_coords = coordinates.each_cons(ship.ship_length).to_a.sample
+        selected_coords = coordinates.sample(ship.ship_length)
       end
       board.place(ship, selected_coords)
 
@@ -101,7 +101,7 @@ class Game
 
     end
     if player_1.has_lost?
-      p "I won!"
+    p "I won!"
     else
       p "You won!"
     end
