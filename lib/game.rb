@@ -40,9 +40,9 @@ class Game
 
       @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
 
-      print '============COMPUTER BOARD=============='
+      p '============COMPUTER BOARD=============='
       print @computer.board.render
-      print '=============PLAYER BOARD==============='
+      p '=============PLAYER BOARD==============='
       print @player_1.board.render_player(true)
 
       play
