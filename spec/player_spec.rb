@@ -4,7 +4,7 @@ require './lib/cell.rb'
 require './lib/board.rb'
 require './lib/player.rb'
 require 'pry'
-require 'pry-nav'
+
 
 RSpec.describe Player do
   it 'exists' do
