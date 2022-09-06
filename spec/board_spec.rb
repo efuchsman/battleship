@@ -3,7 +3,7 @@ require './lib/ship.rb'
 require './lib/cell.rb'
 require './lib/board.rb'
 require 'pry'
-require 'pry-nav'
+
 
 RSpec.describe Board do
   it 'exists' do
