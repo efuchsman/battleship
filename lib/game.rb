@@ -105,6 +105,7 @@ class Game
     else
       p "You won!"
     end
+    start
   end
 
 end
