@@ -55,7 +55,7 @@ class Game
       @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
 
       p '============COMPUTER BOARD=============='
-      print @computer.board.render_player(true)
+      print @computer.board.render
       p '=============PLAYER BOARD==============='
       print @player_1.board.render_player(true)
 
@@ -77,7 +77,7 @@ class Game
     p "I have laid out my ships on the grid."
     p "You now need to lay out your two ships."
     p "The Cruiser is three units long and the Submarine is two units long."
-    print @computer.board.render_player(true)
+    print @computer.board.render
   end
 
   def play
@@ -109,7 +109,7 @@ class Game
       end
 
       p '============COMPUTER BOARD=============='
-      print @computer.board.render_player(true)
+      print @computer.board.render
       p '=============PLAYER BOARD==============='
       print @player_1.board.render_player(true)
 
