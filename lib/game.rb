@@ -7,6 +7,20 @@ class Game
 
   end
 
+  def reset
+    cruiser_1 = Ship.new('Cruiser', 3)
+    cruiser_2 = Ship.new('Cruiser', 3)
+    submarine_1 = Ship.new('Submarine', 2)
+    submarine_2 = Ship.new('Submarine', 2)
+    board_1 = Board.new
+    board_2 = Board.new
+    fleet_1 = [cruiser_1, submarine_1]
+    fleet_2 = [cruiser_2, submarine_2]
+    player_1 = Player.new(fleet_1, board_1)
+    computer = Player.new(fleet_2, board_2)
+    game = Game.new(player_1, computer)
+    game.start
+  end
 
   def start
     p "Welcome to BATTLESHIP"
@@ -41,7 +55,7 @@ class Game
       @player_1.board.place(@player_1.fleet[1],player_1_submarine_coords)
 
       p '============COMPUTER BOARD=============='
-      print @computer.board.render
+      print @computer.board.render_player(true)
       p '=============PLAYER BOARD==============='
       print @player_1.board.render_player(true)
 
@@ -63,7 +77,7 @@ class Game
     p "I have laid out my ships on the grid."
     p "You now need to lay out your two ships."
     p "The Cruiser is three units long and the Submarine is two units long."
-    print @computer.board.render
+    print @computer.board.render_player(true)
   end
 
   def play
@@ -95,7 +109,7 @@ class Game
       end
 
       p '============COMPUTER BOARD=============='
-      print @computer.board.render
+      print @computer.board.render_player(true)
       p '=============PLAYER BOARD==============='
       print @player_1.board.render_player(true)
 
@@ -105,7 +119,6 @@ class Game
     else
       p "You won!"
     end
-    start
+    reset
   end
-
 end
