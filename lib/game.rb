@@ -7,6 +7,20 @@ class Game
 
   end
 
+  def reset
+    cruiser_1 = Ship.new('Cruiser', 3)
+    cruiser_2 = Ship.new('Cruiser', 3)
+    submarine_1 = Ship.new('Submarine', 2)
+    submarine_2 = Ship.new('Submarine', 2)
+    board_1 = Board.new
+    board_2 = Board.new
+    fleet_1 = [cruiser_1, submarine_1]
+    fleet_2 = [cruiser_2, submarine_2]
+    player_1 = Player.new(fleet_1, board_1)
+    computer = Player.new(fleet_2, board_2)
+    game = Game.new(player_1, computer)
+    game.start
+  end
 
   def start
     p "Welcome to BATTLESHIP"
@@ -105,7 +119,6 @@ class Game
     else
       p "You won!"
     end
-    start
+    reset
   end
-
 end
